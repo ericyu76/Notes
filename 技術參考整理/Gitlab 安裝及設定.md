@@ -36,6 +36,26 @@
 *          username: [ 'sAMAccountName']
 *          
 
+##  從SVN 移轉舊資料
+		*	使用 bitbucket 提供的工具 svn-migration-scripts.jar 及方法 https://www.atlassian.com/git/tutorials/migrating-overview/
+
+		* 	Migration 步驟
+			#	確認環境及準備  java -jar ./svn-migration-scripts.jar verify
+			#	調整 svn 可以被匯出
+			#	啓動 http
+			#	調整 http.conf 加入 directory 的部分
+			#	把作者資料倒出來 (git 需要 email, svn 卻沒有) java -jar ./svn-migration-scripts.jar authors http://tgtpe-admvcs.testritegroup.com/svn/tlw/hht/trunk/HHT/Ymw gitexport2102 = roger.hsu <roger.hsu@testritegroup.com>
+t gitexport > authors.txt
+			#java -jar ./svn-migration-scripts.jar authors http://tgtpe-admvcs.testritegroup.com/svn/tlw/hht gitexport gitexport > authors.txt
+
+			#	調整 authors.txt
+			#	convert git svn clone --stdlayout --authors-file=authors.txt
+ <svn-repo>/<project> <git-repo-name>
+ 			#	> git svn clone --stdlayout --authors-file=authors.txt http://tgtpe-admvcs.testritegroup.com/svn/tlw/hht tlw-hht
+ 			#   push to git server  > git remote add origin http://T2427@git.testritegroup.com/bs4/tlw-hht.git
+
+
+
 ## 待辦
 
 *   換 Logo
