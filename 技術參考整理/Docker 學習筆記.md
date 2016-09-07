@@ -6,44 +6,56 @@
 
 Host Server 是用來執行 Docker 的 Server, 需要從 OS 層次開始安裝。這邊使用 centos7 的 x86-64 的最小安裝 iso 檔案進行安裝。
 
-1.  選擇 CentOS 7
+*  選擇 CentOS 7 的原因
+> * 接近 Redhat Enterprise OS
 
-        1.  接近 Redhat Enterprise OS
-    2.  Docker 官方建議採用 kernel 3.1 以上
+*  Docker 官方建議採用 kernel 3.1 以上
 
 ## Install Docker CentOS 7 為例
 
-1.  將  yum db update 到最新
+*  將  yum db update 到最新
 
-*   > sudo yum update
+> ```sh
+> sudo yum update
+```
 
-1.  設定 docker Repository, 可以使用 yum 安裝 docker
+*  設定 docker Repository, 可以使用 yum 安裝 docker
 
 使用 root 新增一個文字檔 "**/etc/yum.repos.d/docker.repo**", 內容為
 
-*   [dockerrepo]
-*   name=Docker Repository
-*   baseurl=[](https://yum.dockerproject.org/repo/main/centos/$releasever/)https://yum.dockerproject.org/repo/main/centos/$releasever/
-*   enabled=1
-*   gpgcheck=1
-*   gpgkey=[](https://yum.dockerproject.org/gpg)https://yum.dockerproject.org/gpg
+> ```ini
+   [dockerrepo]
+   name=Docker Repository
+   baseurl=[](https://yum.dockerproject.org/repo/main/centos/$releasever/)https://yum.dockerproject.org/repo/main/centos/$releasever/
+   enabled=1
+   gpgcheck=1
+   gpgkey=[](https://yum.dockerproject.org/gpg)https://yum.dockerproject.org/gpg
+```
 
-3. 安裝 docker
+* 安裝 docker
 
-*     > sudo yum install docker-engine
+>```sh
+     > sudo yum install docker-engine
+```
 
-4. 啟動 Docker, 設定未來開機後都自己啟動 docker
+* 啟動 Docker, 設定未來開機後都自己啟動 docker
 
-*     > sudo service docker start
-*     > sudo chkconfig docker on
+> ```sh
+     > sudo service docker start
+     > sudo chkconfig docker on
+```
 
-5. 測試 docker
+* 測試 docker
 
-*     > docker run hello-world
+> ```sh
+    > docker run hello-world
+```
 
-6. 因為用 root 來執行 docker 有危險，所以要另外建立一個 Group 叫 docker 把 user "ericyu" 加進去，之後 ericyu 執行 docker 就不需要 root/sudo.
+* 因為用 root 來執行 docker 有危險，所以要另外建立一個 Group 叫 docker 把 user "ericyu" 加進去，之後 ericyu 執行 docker 就不需要 root/sudo.
 
-*     > sudo usermod -aG docker ericyu
+> ```sh
+	> sudo usermod -aG docker ericyu
+```
 
 ## Docker 指令
 
@@ -73,18 +85,25 @@ Host Server 是用來執行 Docker 的 Server, 需要從 OS 層次開始安裝�
 
 **操作:**
 
-*   > docker run -i -t [dockerImage] /bin/bash
-*   root@xxxx> do some changes
+```sh
+  > docker run -i -t [dockerImage] /bin/bash
+  root@xxxx> do some changes
+```
 
-1.  透過 Dockerfile 進行額的配置，透過 Dockerfile 的 script 建立
+*  透過 Dockerfile 進行額的配置，透過 Dockerfile 的 script 建立
 
 *   儲存變更 image
-*   >docker commit -a "Eric Yu" -m "some change messsage"
 
-1.  上傳 image 到 Docker Hub
+```sh
+   >docker commit -a "Eric Yu" -m "some change messsage"
+```
 
-*      >docker tag (給目前的 image 給版號)
-*      >docker push ericyu/centos:v2
+*  上傳 image 到 Docker Hub
+
+```sh
+      >docker tag (給目前的 image 給版號)
+      >docker push ericyu/centos:v2
+```
 
 ## Docker Network  操作
 
@@ -92,24 +111,39 @@ Host Server 是用來執行 Docker 的 Server, 需要從 OS 層次開始安裝�
 
 **操作:**
 
-1.  瞭解目前的網路
+*  瞭解目前的網路
 
-*   docker network ls
+```sh
+   > docker network ls
+```
 
-1.  建立網路自己的網路 (叫 my-bridge-network)
+*  建立網路自己的網路 (叫 my-bridge-network)
 
-*   docker network **create** -**d** **bridge** **my-bridge-network**
+```sh
+   > docker network create -d bridge my-bridge-network
+```
 
-1.  啟動 Server 將 Server 加入自己的網路
+*  啟動 Server 將 Server 加入自己的網路
 
-*   docker **run** -d --net=my-bridge-network --name db training/postgres
+```sh
+   > docker run -d --net=my-bridge-network --name db training/postgres
+```
 
 ## Docker Storage
 
-Storage 是用來把資料儲存下來, 或者有分享的需求時使用。可以透過 docker inspect container 來看mount 的資訊。Mount volume 有二種方式:
+Storage 是用來把資料儲存下來, 或者有分享的需求時使用。可以透過 docker inspect container 來看mount(掛載)的資訊。Mount volume 有二種方式:
 
-*   > docker **run** -i -t --name web **-v** **/src/webapp**:**/opt/webapp** ericyu76/httpd /bin/bash
+* 直接掛載本機目錄
+* 掛載 docker datastore
 
-*   > docker run -i -t **-v /opt** --name **datastore** ericyu76/http /bin/bash
+```sh
+  > docker run -i -t --name web -v /src/webapp:/opt/webapp ericyu76/httpd /bin/bash
+```
 
-*   > docker run -i -t **--volumes-from datastore** --name httpd ericyu76/httpd /bin/bash
+```sh
+  > docker run -i -t -v /opt --name datastore ericyu76/http /bin/bash
+```
+
+```sh
+  > docker run -i -t --volumes-from datastore --name httpd ericyu76/httpd /bin/bash
+```
