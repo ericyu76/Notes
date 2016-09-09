@@ -54,6 +54,23 @@
 		> git remote add origin http://T2427@git.testritegroup.com/bs4/tlw-hht.git
 
 
+## 設定 https
+
+### 幾個要點
+- 調整 /etc/gitlab/gitlab.rb 檔案如下面的檔案
+- 執行 gitlab-ctl reconfigure
+
+```ruby
+external_url 'https://git.example.com'  #要把 http 改為 https 整個才會生效
+
+gitlab_rails['gitlab_https'] = true
+gitlab_rails['gitlab_port'] = 443
+
+nginx['enable'] = true
+nginx['redirect_http_to_https'] = ture
+nginx['ssl_certificate'] = "/etc/gitlab/ssl/git.pem" #申請的 SSL Certificate
+nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/server.key"
+```
 
 ## 待辦
 
