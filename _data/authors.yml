@@ -1,0 +1,19 @@
+# Authors
+
+ericyu:
+  name: Eric
+  web: http://thewhip.com
+  email: ericyu76@gmail.com
+  bio: "Live for today..."
+  avatar: bio-photo-2.jpg
+  google:
+    plus: ericyu76
+
+cornelius_fiddlebone:
+  name: Cornelius Fiddlebone
+  email: cornelius@thewhip.com
+  bio: "I ordered what?"
+  avatar: bio-photo.jpg
+  twitter: rhymeswithsackit
+  google:
+    plus: CorneliusFiddlebone

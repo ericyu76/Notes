@@ -1,0 +1,16 @@
+# Site navigation links
+
+- title: 關於這裡
+  url: /about/
+
+- title: 整理文件
+  url: /articles/
+
+- title: 想法及紀錄
+  url: /blog/
+
+#- title: Theme Setup
+#  url: /theme-setup/
+
+- title: 搜尋
+  url: /search/
