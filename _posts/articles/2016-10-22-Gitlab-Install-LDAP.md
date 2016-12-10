@@ -1,3 +1,12 @@
+---
+layout: post
+title: Gitlab 安裝及設定
+excerpt: "Gitlab 與 LDAP 整合及配置"
+categories: articles
+tags: [git, gitlab, technical, ldap]
+comments: true
+date: 2016-10-22T14:00:55+08:00
+---
 # Gitlab 安裝及設定
 
 1.  下載 gitlab commnuity Edition(for Centos)
@@ -18,23 +27,25 @@
                 *   先選擇專案 Owner 的 Group
         *   建立專案為 private
 
-*   >ldapsearch -h ad0.testritegroup.com -p 389 -b 'CN=zAccount,DC=testritegroup,DC=com' -D 'T2427@testritegroup.com' -x -W
-*
+```bash
+ldapsearch -h ad0.companyname.com -p 389 -b 'CN=zAccount,DC=companyname,DC=com' -D 'eric.yu@companyname.com' -x -W
+```
 
-*   main: # 'main' is the GitLab 'provider ID' of this LDAP server
-*        label: 'LDAP'
-*        host: '**ad0.testritegroup.com**'
-*        port: 389
-*        uid: '**sAMAccountName**'
-*        method: 'plain' # "tls" or "ssl" or "plain"
-*        bind_dn: '**T2427@testritegroup.com**' # 需要一個查詢 LDAP 的帳號
-*        password: '******' # 查詢帳號的密碼
-*        active_directory: true
-*        allow_username_or_email_login: true
-*        base: '**DC=testritegroup,DC=com**'
-*        attributes:
-*          username: [ 'sAMAccountName']
-*          
+```yaml
+  main: # 'main' is the GitLab 'provider ID' of this LDAP server
+       label: 'LDAP'
+       host: '**ad0.companyname.com**'
+       port: 389
+       uid: '**sAMAccountName**'
+       method: 'plain' # "tls" or "ssl" or "plain"
+       bind_dn: '**eric.yu@companyname.com**' # 需要一個查詢 LDAP 的帳號
+       password: '******' # 查詢帳號的密碼
+       active_directory: true
+       allow_username_or_email_login: true
+       base: '**DC=companyname,DC=com**'
+       attributes:
+         username: [ 'sAMAccountName']
+```         
 
 ##  從SVN 移轉舊資料
 ### 使用 bitbucket 提供的工具 svn-migration-scripts.jar 及方法 https://www.atlassian.com/git/tutorials/migrating-overview/
@@ -45,13 +56,13 @@
 #### 啓動 http
 #### 調整 http.conf 加入 directory 的部分
 ### 把作者資料倒出來 (git 需要 email, svn 卻沒有) 
-		java -jar ./svn-migration-scripts.jar authors http://tgtpe-admvcs.testritegroup.com/svn/tlw/hht gitexport gitexport > authors.txt
+		java -jar ./svn-migration-scripts.jar authors http://www.xxx.com/svn/repo gitexport gitexport > authors.txt
 
 ### 調整 authors.txt
 ### convert 
 		> git svn clone --stdlayout --authors-file=authors.txt <svn repo url> <local git repos>
 ### push to git server  
-		> git remote add origin http://T2427@git.testritegroup.com/bs4/tlw-hht.git
+		> git remote add origin http://eric.yu@git.xxx.com/xxx/xxx-hht.git
 
 
 ## 設定 https

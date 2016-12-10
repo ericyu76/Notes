@@ -1,3 +1,12 @@
+---
+layout: post
+title: Docker 學習筆記
+excerpt: "整理試用 Docker 的紀錄"
+categories: articles
+tags: [docker, technical]
+comments: true
+date: 2016-10-15T12:39:55+08:00
+---
 # Docker 學習筆記
 
 希望透過 docker 的技術能夠將開發環境的 template 建立起來，未來若要在本地或雲端建置系統，就可以非常快速的把環境建立起來。

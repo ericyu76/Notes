@@ -2,10 +2,11 @@
 
 title: Ouch! Pin
 locale: en_US
-description: 我的網路筆記本
+description: 我的技術旅程筆記
 #logo: site-logo.png
 search: true
-url: http://www.ouchpin.com
+url: http://ouchpin.com
+#url: http://localhost:4000  # for local serve
 
 # Jekyll configuration
 

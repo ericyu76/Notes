@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 整理的技術文章
+title: 文章
 excerpt: "經過整理的文章"
 search_omit: true
 ---

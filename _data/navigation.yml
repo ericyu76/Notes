@@ -1,12 +1,12 @@
 # Site navigation links
 
-- title: 關於這裡
+- title: 關於
   url: /about/
 
-- title: 整理文件
+- title: 文章
   url: /articles/
 
-- title: 想法及紀錄
+- title: 想法紀錄
   url: /blog/
 
 #- title: Theme Setup
