@@ -1,8 +1,8 @@
 # Site wide configuration
 
-title: OuchPin
+title: Ouch! Pin
 locale: en_US
-description: 我的技術筆記本
+description: 我的網路筆記本
 #logo: site-logo.png
 search: true
 url: http://www.ouchpin.com
@@ -36,7 +36,7 @@ exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.
 
 # Site owner
 owner:
-  name: OuchPin
+  name: Eric
   avatar: bio-photo.jpg
   email: ericyu76@gmail.com
   disqus-shortname:
