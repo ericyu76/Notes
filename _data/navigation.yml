@@ -1,8 +1,5 @@
 # Site navigation links
 
-- title: 關於
-  url: /about/
-
 - title: 文章
   url: /articles/
 
@@ -11,6 +8,9 @@
 
 #- title: Theme Setup
 #  url: /theme-setup/
+
+- title: 關於
+  url: /about/
 
 - title: 搜尋
   url: /search/

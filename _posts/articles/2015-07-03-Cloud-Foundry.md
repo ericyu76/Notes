@@ -1,3 +1,12 @@
+---
+layout: post
+title: Cloud Foundry
+excerpt: "Cloud Foundry 的初步瞭解及認識"
+categories: articles
+tags: [cloudfoundry, paas, container]
+comments: true
+date: 2015-10-01T21:01:55+08:00
+---
 # Cloud Foundry
 
 ## 簡介

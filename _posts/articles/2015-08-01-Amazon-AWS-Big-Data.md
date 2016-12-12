@@ -1,3 +1,12 @@
+---
+layout: post
+title: Amazon AWS Big Data
+excerpt: "Amazon Big Data 上課內容筆記整理"
+categories: articles
+tags: [aws, bigdata, hadoop]
+comments: true
+date: 2015-08-01T20:33:35+08:00
+---
 # Amazon AWS Big Data
 
 Most attendees are 媒體，B2C...

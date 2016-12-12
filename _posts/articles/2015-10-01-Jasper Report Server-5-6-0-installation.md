@@ -1,3 +1,12 @@
+---
+layout: post
+title: Jasper Report Server 5.6.0 安裝設定(中文字型)
+excerpt: "試用 Jasper Report Server 的紀錄, 含中文字型的處理"
+categories: articles
+tags: [report, jasper]
+comments: true
+date: 2015-10-01T21:01:55+08:00
+---
 # Jasper Report Server 5.6.0 安裝設定
 
 **為什麼要使用 Report Server**
@@ -19,14 +28,18 @@
 
 *   使用自備 Tomcat 7, 透過 buildmatic 進行設定, 經測試 Repository DB 使用 MySQL 可正常使用
 
-        *   Tomcat Server: apache-tomcat-7.0.zip
+*   需要的程式
+
+    *   Tomcat Server: apache-tomcat-7.0.zip
     *   Jasper Report Server War Archive: jasperreportserver-5.6.0.war
     *   MySQL Server with root permission
     *   JDBC Driver: Ex: ojdbc6.jar (Oracle R11)
 
-*           CATALINA_OPTS="-Xms1024M -Xmx2048M -XX:MaxPermSize=512M"
-
 *   透過 catalina.sh 裡的 CATALINA_OPT 來設定...(最簡單的做法必需設定在run 之前) 
+
+```bash
+CATALINA_OPTS="-Xms1024M -Xmx2048M -XX:MaxPermSize=512M"
+```
 
 *   需自備 jdbc driver 安裝在 Tomcat 上面.
 
@@ -36,12 +49,19 @@
 
 *   copy sample_conf/mysql_master.properties to default_master.properties
 
-*           ./js-install-ce.sh
+```bash
+$ ./js-install-ce.sh
+```
 
 **開始執行測試**
 
-*   啟動 Tomcat ( tomcat_folder/bin/startup.sh)
-*   打開瀏覽器登入 [](http://172.17.120.137:8880/jasperserver/login.html)http://172.17.120.137:8880/jasperserver/login.html
+*   啟動 Tomcat 
+
+```bash
+$ tomcat_folder/bin/startup.sh
+```
+
+*   打開瀏覽器登入 [](http://127.0.0.1:8880/jasperserver/login.html)http://127.0.0.1:8880/jasperserver/login.html
 
 ## 中文字型
 
@@ -73,32 +93,34 @@
 
 *   (Background) Execution Reports
 
-*   (POST) [](http://172.17.120.84:8080/jasperserver/rest_v2/reportExecutions/)[http://172.17.120.84:8080/jasperserver/rest_v2/reportExecutions/](http://172.17.120.84:8080/jasperserver/rest_v2/reportExecutions/)
-*    {
-*       "reportUnitUri": "/reports/som/cbsku",
-*       "async": "true",
-*       "freshData": "false",
-*       "saveDataSnapshot": "false",
-*       "outputFormat": "pdf",
-*       "interactive": "false",
-*       "ignorePagination": "false",
-*       "parameters": {
-*         "reportParameter": [
-*           {
-*             "name": "skuNoStart",
-*             "value": [
-*               "199000"
-*             ]
-*           },
-*           {
-*             "name": "skuNoEnd",
-*             "value": [
-*               "200000"
-*             ]
-*           }
-*         ]
-*       }
-*     }
-*
+*   (POST) [](http://127.0.0.1:8080/jasperserver/rest_v2/reportExecutions/)[http://127.0.0.1:8080/jasperserver/rest_v2/reportExecutions/](http://127.0.0.1:8080/jasperserver/rest_v2/reportExecutions/)
 
-*   (GET) [](http://172.17.120.84:8080/jasperserver/rest_v2/reportExecutions/33020942-38c5-42a7-98ce-dc528e07c711)http://172.17.120.84:8080/jasperserver/rest_v2/reportExecutions/33020942-38c5-42a7-98ce-dc528e07c711
+```json
+   {
+      "reportUnitUri": "/reports/som/cbsku",
+      "async": "true",
+      "freshData": "false",
+      "saveDataSnapshot": "false",
+      "outputFormat": "pdf",
+      "interactive": "false",
+      "ignorePagination": "false",
+      "parameters": {
+        "reportParameter": [
+          {
+            "name": "skuNoStart",
+            "value": [
+              "199000"
+            ]
+          },
+          {
+            "name": "skuNoEnd",
+            "value": [
+              "200000"
+            ]
+          }
+        ]
+      }
+    }
+```
+
+*   (GET) [](http://127.0.0.1:8080/jasperserver/rest_v2/reportExecutions/33020942-38c5-42a7-98ce-dc528e07c711)http://127.0.0.1:8080/jasperserver/rest_v2/reportExecutions/33020942-38c5-42a7-98ce-dc528e07c711

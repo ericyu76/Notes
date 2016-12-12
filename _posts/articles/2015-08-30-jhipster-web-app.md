@@ -1,8 +1,17 @@
-# 利用 jHipster建立Java Web Application系統
+---
+layout: post
+title: 利用 jHipster建立Java Web Application系統
+categories: articles
+tags: [java, spring, jhipster]
+comments: true
+date: 2015-08-30T18:00:35+08:00
+---
 
 ## 什麼是 jHipster?
 
-jHispter 是一個自動化的 script , 讓開發者快速建立Java Web Application 的先進 Framework 集合。這裡有 Framework 集合的說明 [](http://jhipster.github.io/presentation/)http://jhipster.github.io/presentation/[ ](http://jhipster.github.io/presentation/建議從)看完Framework說明後，假若這些 framework 也符合開發者的需求，就可以再看一下 jHispter Video (約20分鐘):  ([](https://jhipster.github.io/video_tutorial.html))[https://jhipster.github.io/video_tutorial.html](https://jhipster.github.io/video_tutorial.html))
+jHispter 是一個自動化的 script , 讓開發者快速建立Java Web Application 的先進 Framework 集合。這裡有 Framework 集合的[官方說明](http://jhipster.github.io/presentation/)
+
+看完Framework說明後，假若這些 framework 也符合開發者的需求，就可以再看一下 [jHispter Video (約20分鐘)](https://jhipster.github.io/video_tutorial.html)
 
 20分鐘影片內容包含:
 
@@ -18,8 +27,11 @@ jHispter 是一個自動化的 script , 讓開發者快速建立Java Web Applica
 **幾個比較重要的 Framework**
 
 *   AngularJS as FrontEnd
+    *   html5/css3
+* Spring 4 MVC
+* Spring 4 Security
+* Spring 4 JPA
 
-        *   html5, css3
 
 **優點:**
 
@@ -36,14 +48,19 @@ jHispter 是一個自動化的 script , 讓開發者快速建立Java Web Applica
 
 **安裝(前面要安裝 node.js 就省略)**
 
-*   > npm -g install yo
-*   > npm -g install generator-jhipster
+
+```bash
+   > npm -g install yo
+   > npm -g install generator-jhipster
+```
 
 **基礎設定**
 
-*   > mkdir application-folder
-*   > cd application-folder
-*   >  yo jhispter
+```bash
+   > mkdir application-folder
+   > cd application-folder
+   >  yo jhispter
+```
 
 14 個基礎設定，我選擇了: Java 7, MySQL, Hibernate-2nd Level enable
 
@@ -56,15 +73,19 @@ jHispter 是一個自動化的 script , 讓開發者快速建立Java Web Applica
 
 **啟動 Server，檢視結果**
 
-*   > export JAVA_HOME=$(/usr/libexec/java_home)
-*   > mvn spring-boot:run
+``` bash
+> export JAVA_HOME=$(/usr/libexec/java_home)
+> mvn spring-boot:run
+```
 
 打開 browser 連到 localhost:8080 可看到建立出來的程式結果，也可以利用 grunt serve 的 live reload 更即時的看到 UI 設計的變化，這個在 RWD 的 UI 設計時是相當方便的.
 
 **新增 Entity (DataModel 及 Relation 要先想好，Generator不容易回頭)**
 
-*   >yo jhipster:entity [entityName]
-*   >mvn test
+``` bash
+> yo jhipster:entity [entityName]
+> mvn test
+```
 
 萬一做錯，不容易回頭，利用 git/svn 版控工具進行回復是一個最快的方式，否則就有很多檔案要刪。參考連結裡有一個網址說明如何手動回復。
 
@@ -72,7 +93,9 @@ jHispter 是一個自動化的 script , 讓開發者快速建立Java Web Applica
 
 *   新增 service，並在新增的 service 裡能使用  mybatis DAO
 
-*   > yo jhipster:service orderManager
+```bash
+> yo jhipster:service orderManager
+```
 
 產生了 Services 之後，加上 @RoleAllowed @Timed @RestController @RequestMapping...等等即可，未測試完成.
 
@@ -80,17 +103,14 @@ jHispter 是一個自動化的 script , 讓開發者快速建立Java Web Applica
 
 *   如何保護Enitity/Service及設定權限？
 
-curl [](http://localhost:8080/api/login?username=admin\)http://localhost:8080/api/login?username=admin\
-
+```bash
+$ curl [](http://localhost:8080/api/login?username=admin\)http://localhost:8080/api/login?username=admin\
 &password=admin\
-
 &grant_type=\
-
 &scope=read%20write\
-
 &client_secret=mySecretOAuthSecret&\
-
-client_id=TestriteGSCMapp
+client_id=myApp
+```
 
 **Java IDE 開發環境**
 
