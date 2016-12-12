@@ -8,14 +8,17 @@ comments: true
 ---
 
 # Container 相關整理
-## 什麼是 Container 
-* 我把它稱做"程式貨櫃",過去一百年貨櫃 (Container) 讓國際物流的效率很有效的提昇了，程式的佈署也有貨櫃的概念讓程式與程式間的整合更為標準化。 Container 由幾個重要的概念組合起來
-    1. Container 是一種把程式(服務)再封裝的單位, 讓系統間的組合為標準/容易彈性組合擴充
-    2. Container 與 Container之間的溝通, 透過設定的 ip/port 進行整合
-    3. 由於作業系統的特性，Container 目前都是使用 Linux 核心
-    4. 多個 Container 可以在同一個虛擬機(VM)上執行, 每個 Container 邏輯上都是一個獨立的作業系統(只執行服務程式)
-    5. Container 擁有自己的作業系統設定及網路配置, 透過 image 的方式儲存container 的 snapshot 在 registry
-    6. Container 比作業系統使用的資源更少，不論是開發測試環境或上線環境，都能更有效率的運用硬體資源
+## 什麼是 Container
+
+我把它稱做"程式貨櫃",過去一百年貨櫃 (Container)
+讓國際物流的效率很有效的提昇了，程式的佈署也有貨櫃的概念讓程式與程式間的整合更為標準化。 Container 由幾個重要的概念組合起來
+
+1. Container 是一種把程式(服務)再封裝的單位, 讓系統間的組合為標準/容易彈性組合擴充
+2. Container 與 Container之間的溝通, 透過設定的 ip/port 進行整合
+3. 由於作業系統的特性，Container 目前都是使用 Linux 核心
+4. 多個 Container 可以在同一個虛擬機(VM)上執行, 每個 Container 邏輯上都是一個獨立的作業系統(只執行服務程式)
+5. Container 擁有自己的作業系統設定及網路配置, 透過 image 的方式儲存container 的 snapshot 在 registry
+6. Container 比作業系統使用的資源更少，不論是開發測試環境或上線環境，都能更有效率的運用硬體資源
 
 ## 什麼是 Docker (與 DockerHub 不同)
 1. Docker 是 Container 概念的實作
@@ -32,10 +35,15 @@ comments: true
 
 ## Container/Docker 的可能使用情境 
 ### 在實驗階段: 
+
 若是使用 OpenSource 軟體，大多可以在網路上找到可用的 Image, 安裝的過程全部自動化
+
 ### 在開發階及測試階段: 
+
 透過 script 的撰寫，可以快速搭建一整個測試環境
+
 ### 在上線環境的應用: 
+
 容錯容量的管理可以因應需求自動化擴充及縮小，更有效的運用硬體資源
 不被雲端服務的 Vendor 挷定(Iaas)，只要能執行 Docker的 VM，就能很快的把相同的服務建立起來
 
