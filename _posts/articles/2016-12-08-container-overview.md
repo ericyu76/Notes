@@ -33,7 +33,8 @@ comments: true
 3. 由於免費方案，DockerHub 上提供數量非常廣大的現成 Public Image 供大家免費使用
 4. 大多 OpenSource 的軟體，自己也維護 Image在 DockerHub 上
 
-## Container/Docker 的可能使用情境 
+## Container/Docker 的可能使用情境
+
 ### 在實驗階段: 
 
 若是使用 OpenSource 軟體，大多可以在網路上找到可用的 Image, 安裝的過程全部自動化
