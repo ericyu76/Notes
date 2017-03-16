@@ -83,6 +83,30 @@ nginx['ssl_certificate'] = "/etc/gitlab/ssl/git.pem" #申請的 SSL Certificate
 nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/server.key"
 ```
 
+## 備份
+有二份內容要備份
+
+1. Configuration, gitlab 的設定檔及一些密鑰
+2. Application Data, postgres db 及 git bare 資訊
+
+- Configuration, 檔案內容都在 /etc/gitlab 裡, 
+```bash
+umask 0077; tar -cf /var/opt/gitlab/backups/$(date "+etc-gitlab-%s.tar") -C / etc/gitlab
+```
+- Application Data 
+    1. 設定備份的路徑可以是 mount 遠端的目錄 (/etc/gitlab/gitlab.rb)
+       
+       ```ini
+       gitlab_rails['backup_path'] = /var/opt/gitlab/backups
+       ```
+    2. 調整保存的日期，單位為秒 172800 為 2 天
+       
+       ```ini
+       gitlab_rails['backup_keep_time'] = 172800
+       ```
+    3. 設定 cron
+
+
 ## 待辦
 
 *   換 Logo
