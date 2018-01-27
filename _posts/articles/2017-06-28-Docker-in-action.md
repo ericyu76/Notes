@@ -46,7 +46,7 @@ comments: true
   - 每次mvn rebuild 都會產生一個 docker image
   - 把 Dockerfile 放在 /src/main/docker，透過 docker file 來自動佈署 rebuild 完成的 Jar 檔
 
-```yaml
+```bash
     FROM frolvlad/alpine-oraclejdk8:slim
     VOLUME /tmp
     ADD itmobileserver-1.0.0-SNAPSHOT.jar app.jar
@@ -76,7 +76,7 @@ comments: true
 ## Docker link
 - 透過 docker link 來連結，可以讓 container 拿到對應的網路環境變數
     
-    ```bash
+```bash
     > docker run -p 8080:8080 --name my-java --link my-mongo -d  ericyu76/itmobileserver
     > docker exec -it my-java env
     LATEST_PORT=tcp://172.17.0.2:27017
@@ -90,7 +90,7 @@ comments: true
     LATEST_ENV_MONGO_MAJOR=3.4
     LATEST_ENV_MONGO_VERSION=3.4.4
     LATEST_ENV_MONGO_PACKAGE=mongodb-org
-    ```
+```
 
 Java程式如何使用到 container 的環境變數?
 1. Docker RUN  時指定參數
