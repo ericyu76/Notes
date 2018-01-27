@@ -45,7 +45,8 @@ comments: true
 
   - 每次mvn rebuild 都會產生一個 docker image
   - 把 Dockerfile 放在 /src/main/docker，透過 docker file 來自動佈署 rebuild 完成的 Jar 檔
-```dockerfile
+
+```yaml
     FROM frolvlad/alpine-oraclejdk8:slim
     VOLUME /tmp
     ADD itmobileserver-1.0.0-SNAPSHOT.jar app.jar
@@ -53,6 +54,7 @@ comments: true
     ENV JAVA_OPTS=""
     ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
 ```
+
   - 產生 docker image
 
   ```bash
