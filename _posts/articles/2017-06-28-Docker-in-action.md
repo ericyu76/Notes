@@ -27,10 +27,9 @@ comments: true
 - 啟動時若設定了 volumn 的對應， 透過 docker logs 會看到 /data/db 的 permission error 
 
 解決:
-
-    ```bash
+```bash
     > chcon -Rt svirt_sandbox_file_t /my/own/datadir
-    ```
+```
 
 # Java Spring boot Application Docker 化
 ## 說明
@@ -46,14 +45,14 @@ comments: true
 
   - 每次mvn rebuild 都會產生一個 docker image
   - 把 Dockerfile 放在 /src/main/docker，透過 docker file 來自動佈署 rebuild 完成的 Jar 檔
-    ```dockerfile
+```dockerfile
     FROM frolvlad/alpine-oraclejdk8:slim
     VOLUME /tmp
     ADD itmobileserver-1.0.0-SNAPSHOT.jar app.jar
     RUN sh -c 'touch /app.jar'
     ENV JAVA_OPTS=""
     ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
-    ```
+```
   - 產生 docker image
 
   ```bash
