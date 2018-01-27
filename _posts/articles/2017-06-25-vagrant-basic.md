@@ -13,7 +13,7 @@ comments: true
 - vagrant 裡的 **box** 是已經準備好了的 VM, 有現成的可以下載不需要自己安裝 linux
 - Vagrantfile, 用來定義 VM 的配置
 
-```txt
+```properties
     Vagrant.configure("2") do |config|
       config.vm.box = "centos/7"
       config.vm.box_version ="1704.01"
